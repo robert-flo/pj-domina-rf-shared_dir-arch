@@ -115,8 +115,10 @@ test_pkgbuild_targets_shared_dir() {
   grep -Eq '^pkgname=shared_dir$' "$PACKAGE_DIR/PKGBUILD" || die 'PKGBUILD pkgname is not shared_dir'
   grep -Fq 'robert-flo/shared_dir' "$PACKAGE_DIR/PKGBUILD" || die 'PKGBUILD url is not shared_dir upstream'
   grep -Eq '^pkgname = shared_dir$' "$PACKAGE_DIR/.SRCINFO" || die '.SRCINFO pkgname is not shared_dir'
+  grep -Fq "depends=('acl' 'inotify-tools' 'sudo')" "$PACKAGE_DIR/PKGBUILD" || die 'PKGBUILD is missing the sudo runtime dependency'
+  grep -Fxq $'\tdepends = sudo' "$PACKAGE_DIR/.SRCINFO" || die '.SRCINFO is missing the sudo runtime dependency'
   [[ -x $PACKAGE_DIR/shared_dir ]] || die 'launcher shared_dir is missing or not executable'
-  grep -Fq '/opt/shared_dir/shared_dir' "$PACKAGE_DIR/shared_dir" || die 'launcher does not exec payload'
+  grep -Fq 'exec sudo -- /opt/shared_dir/shared_dir' "$PACKAGE_DIR/shared_dir" || die 'launcher does not elevate before executing the payload'
 }
 
 main() {

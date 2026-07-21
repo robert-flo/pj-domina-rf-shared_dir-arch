@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 
-exec /opt/shared_dir/shared_dir "$@"
+if ((EUID == 0)); then
+  exec /opt/shared_dir/shared_dir "$@"
+fi
+
+# shellcheck disable=SC2093 # The launcher deliberately becomes sudo.
+exec sudo -- /opt/shared_dir/shared_dir "$@"

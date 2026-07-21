@@ -69,7 +69,8 @@ phase_verify_package_and_product() {
   test -x /usr/bin/shared_dir
   test -x /opt/shared_dir/shared_dir
   test -f /usr/share/licenses/shared_dir/LICENSE
-  grep -Fq '/opt/shared_dir/shared_dir' /usr/bin/shared_dir
+  grep -Fq 'exec sudo -- /opt/shared_dir/shared_dir' /usr/bin/shared_dir
+  pacman -Q sudo > /dev/null
 
   test -f "$desktop_file"
   grep -Fxq '[Desktop Entry]' "$desktop_file"
@@ -84,9 +85,9 @@ phase_verify_package_and_product() {
   # Installer defaults to group wheel.
   getent group wheel > /dev/null || groupadd -r wheel
 
-  # Non-root must refuse (run as the unprivileged builder account).
+  # The private payload must refuse a direct non-root invocation.
   su --shell /bin/bash builder --command \
-    "printf '%s\n' '$DEMO_DIR' | /usr/bin/shared_dir" \
+    "printf '%s\n' '$DEMO_DIR' | /opt/shared_dir/shared_dir" \
     > /tmp/shared_dir-nonroot.out 2>&1 || nonroot_status=$?
   ((nonroot_status != 0)) || {
     printf 'ERROR: shared_dir succeeded without root\n' >&2
@@ -95,8 +96,10 @@ phase_verify_package_and_product() {
   }
   grep -Fq 'This script must be run as root.' /tmp/shared_dir-nonroot.out
 
-  # Root e2e on a disposable path inside this throwaway container.
-  printf '%s\n' "$DEMO_DIR" | /usr/bin/shared_dir > /tmp/shared_dir-e2e.out
+  # The public launcher must elevate the unprivileged user and run the e2e.
+  su --shell /bin/bash builder --command \
+    "printf '%s\n' '$DEMO_DIR' | /usr/bin/shared_dir" \
+    > /tmp/shared_dir-e2e.out
 
   grep -Fq 'Configuration completed successfully.' /tmp/shared_dir-e2e.out
   grep -Fq "Directory:            $DEMO_DIR" /tmp/shared_dir-e2e.out
