@@ -1,0 +1,16 @@
+pkgbase = shared_dir
+	pkgdesc = Create a group-shared directory with ACL and systemd permission monitoring
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/robert-flo/shared_dir
+	arch = any
+	license = MIT
+	depends = acl
+	depends = inotify-tools
+	options = !debug
+	source = shared_dir-0.1.0.tar.gz::https://github.com/robert-flo/shared_dir/archive/refs/tags/v0.1.0.tar.gz
+	source = shared_dir
+	sha256sums = ba8f1fc199094a3dddff9a972f1b877348116152f318e211e5f602afde63d780
+	sha256sums = 2907286aacaf3b6bb32fd996a40c23536e24d52d4aec321c96d541152317dfbb
+
+pkgname = shared_dir

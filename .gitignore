@@ -1,0 +1,4 @@
+pkg/
+src/
+*.pkg.tar.*
+shared_dir-*.tar.gz
