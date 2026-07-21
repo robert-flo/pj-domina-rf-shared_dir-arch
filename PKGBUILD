@@ -6,7 +6,7 @@ arch=('any')
 url='https://github.com/robert-flo/shared_dir'
 license=('MIT')
 options=('!debug')
-depends=('acl' 'inotify-tools')
+depends=('acl' 'inotify-tools' 'sudo')
 source=(
   "${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"
   "${pkgname}"
