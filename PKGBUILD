@@ -1,5 +1,5 @@
 pkgname=shared_dir
-pkgver=0.1.0
+pkgver=0.2.0
 pkgrel=1
 pkgdesc='Create a group-shared directory with ACL and systemd permission monitoring'
 arch=('any')
@@ -12,7 +12,7 @@ source=(
   "${pkgname}"
 )
 sha256sums=(
-  'ba8f1fc199094a3dddff9a972f1b877348116152f318e211e5f602afde63d780'
+  '5b8c4133eef5c7df57e552a9fbb714ffe4f60880a1346f16f3ba6c4317f0e115'
   '2c949232dd9bf8a4a0b43e56af15039565d47f1a07184ad9d8b5896a24e4940d'
 )
 
