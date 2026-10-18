@@ -1,17 +1,17 @@
 pkgbase = shared_dir
 	pkgdesc = Create a group-shared directory with ACL and systemd permission monitoring
 	pkgver = 0.2.0
-	pkgrel = 1
-	url = https://github.com/robert-flo/shared_dir
+	pkgrel = 2
+	url = https://github.com/robert-flo/PJ-DOMINA-rf-shared_dir
 	arch = any
 	license = MIT
 	depends = acl
 	depends = inotify-tools
 	depends = sudo
 	options = !debug
-	source = shared_dir-0.2.0.tar.gz::https://github.com/robert-flo/shared_dir/archive/refs/tags/v0.2.0.tar.gz
+	source = shared_dir-0.2.0.tar.gz::https://github.com/robert-flo/PJ-DOMINA-rf-shared_dir/archive/refs/tags/v0.2.0.tar.gz
 	source = shared_dir
-	sha256sums = 5b8c4133eef5c7df57e552a9fbb714ffe4f60880a1346f16f3ba6c4317f0e115
+	sha256sums = 8e50e463a74f94632aeb54d31a495bb36d30da46366ab5b2941d59c8ff681111
 	sha256sums = 2c949232dd9bf8a4a0b43e56af15039565d47f1a07184ad9d8b5896a24e4940d
 
 pkgname = shared_dir
