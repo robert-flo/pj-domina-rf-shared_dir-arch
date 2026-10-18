@@ -14,7 +14,7 @@ requests `sudo` when needed, then execs the private payload under
 | --- | --- |
 | `pkgname` | `shared_dir` |
 | Upstream | https://github.com/robert-flo/pj-domina-rf-shared_dir |
-| Pinned release | `v0.2.0` |
+| Pinned release | `v0.3.0` |
 | Payload | `/opt/shared_dir/shared_dir` |
 | Launcher | `/usr/bin/shared_dir` |
 | Runtime depends | `acl`, `inotify-tools`, `sudo` |
