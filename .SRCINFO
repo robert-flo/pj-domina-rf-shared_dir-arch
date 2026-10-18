@@ -1,7 +1,7 @@
 pkgbase = shared_dir
 	pkgdesc = Create a group-shared directory with ACL and systemd permission monitoring
 	pkgver = 0.3.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/robert-flo/pj-domina-rf-shared_dir
 	arch = any
 	license = MIT

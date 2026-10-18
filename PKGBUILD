@@ -1,6 +1,6 @@
 pkgname=shared_dir
 pkgver=0.3.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Create a group-shared directory with ACL and systemd permission monitoring'
 arch=('any')
 url='https://github.com/robert-flo/pj-domina-rf-shared_dir'
@@ -22,6 +22,17 @@ package() {
 
   install -d "${payload_dir}"
   install -Dm755 "${source_dir}/shared_dir" "${payload_dir}/shared_dir"
+  # shared_dir hace source de helper/ y scripts/ relativos a sí mismo: sin
+  # ellos el binario instalado muere con "No such file or directory".
+  [[ -d "${source_dir}/helper" ]] || return 1
+  [[ -d "${source_dir}/scripts" ]] || return 1
+  while IFS= read -r -d '' rel; do
+    local mode=644
+    case ${rel} in
+      *.sh) mode=755 ;;
+    esac
+    install -Dm"${mode}" "${source_dir}/${rel}" "${payload_dir}/${rel}"
+  done < <(cd "${source_dir}" && find helper scripts -type f -print0 | sort -z)
   install -Dm755 "${srcdir}/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
   install -Dm644 "${source_dir}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   install -Dm644 /dev/stdin "${pkgdir}/usr/share/applications/${pkgname}.desktop" << 'DESKTOP_ENTRY'
