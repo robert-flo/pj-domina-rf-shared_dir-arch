@@ -1,0 +1,38 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Read package version
+        run: |
+          set -Eeuo pipefail
+          echo "PKGVER=$(awk -F= '/^pkgver=/{gsub(/ /, "", $2); print $2; exit}' PKGBUILD)" >> "$GITHUB_ENV"
+
+      # Best effort: si el upstream sigue privado el token del repo no llega;
+      # el test hace SKIP y el run queda verde. En cuanto el repo sea público
+      # el test corre de verdad en cada push y PR.
+      - name: Checkout upstream source
+        id: upstream
+        continue-on-error: true
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: robert-flo/pj-domina-rf-shared_dir
+          ref: v${{ env.PKGVER }}
+          path: upstream
+          token: ${{ github.token }}
+
+      - name: Validate packaging test
+        run: |
+          set -Eeuo pipefail
+          bash -n PKGBUILD tests/test-package-install.sh
+          shellcheck -S warning tests/test-package-install.sh
+          if [[ -d upstream ]]; then
+            SHARED_DIR_SRC="$GITHUB_WORKSPACE/upstream" tests/test-package-install.sh
+          else
+            tests/test-package-install.sh
+          fi
