@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  UPSTREAM_REPO: robert-flo/PJ-DOMINA-rf-shared_dir
+  UPSTREAM_REPO: robert-flo/pj-domina-rf-shared_dir
 
 jobs:
   update:

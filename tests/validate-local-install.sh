@@ -20,7 +20,7 @@ readonly PACKAGE_DIR
 readonly CONTAINER_SCRIPT="$SCRIPT_DIR/lib/container-validate.sh"
 PKG_VERSION="$(awk -F= '/^pkgver=/{print $2; exit}' "$PACKAGE_DIR/PKGBUILD")"
 readonly PKG_VERSION
-readonly PKG_ARCHIVE_PREFIX="PJ-DOMINA-rf-shared_dir-${PKG_VERSION}/"
+readonly PKG_ARCHIVE_PREFIX="pj-domina-rf-shared_dir-${PKG_VERSION}/"
 readonly SANDBOX_NAME="shared_dir-package-validate-$$"
 readonly READY_TIMEOUT=40
 

@@ -1,7 +1,7 @@
-# PJ-DOMINA-rf-shared_dir-AUR
+# pj-domina-rf-shared_dir-aur
 
 Arch packaging repository for
-[`shared_dir`](https://github.com/robert-flo/PJ-DOMINA-rf-shared_dir).
+[`shared_dir`](https://github.com/robert-flo/pj-domina-rf-shared_dir).
 
 This checkout is the packaging surface only. The product lives in the upstream
 source repository. The local `shared_dir` file is the `/usr/bin` launcher: it
@@ -13,7 +13,7 @@ requests `sudo` when needed, then execs the private payload under
 | Field | Value |
 | --- | --- |
 | `pkgname` | `shared_dir` |
-| Upstream | https://github.com/robert-flo/PJ-DOMINA-rf-shared_dir |
+| Upstream | https://github.com/robert-flo/pj-domina-rf-shared_dir |
 | Pinned release | `v0.1.0` |
 | Payload | `/opt/shared_dir/shared_dir` |
 | Launcher | `/usr/bin/shared_dir` |

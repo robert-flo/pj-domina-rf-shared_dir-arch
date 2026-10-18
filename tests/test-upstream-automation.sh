@@ -66,7 +66,7 @@ test_check_detects_release() {
   assert_file_line 'upstream_tag=v9.8.7' "$output_file"
   assert_file_line 'upstream_version=9.8.7' "$output_file"
   assert_file_line "archive_sha256=$expected_checksum" "$output_file"
-  grep -Fq 'robert-flo/PJ-DOMINA-rf-shared_dir' \
+  grep -Fq 'robert-flo/pj-domina-rf-shared_dir' \
     <(PATH="$test_dir/bin:$PATH" PKGBUILD_PATH="$test_dir/PKGBUILD" \
       GITHUB_OUTPUT=/dev/null "$PACKAGE_DIR/scripts/check_upstream.sh" 2> /dev/null || true) \
     || true
@@ -113,7 +113,7 @@ test_same_version_checksum_change_increments_release() {
 
 test_pkgbuild_targets_shared_dir() {
   grep -Eq '^pkgname=shared_dir$' "$PACKAGE_DIR/PKGBUILD" || die 'PKGBUILD pkgname is not shared_dir'
-  grep -Fq 'robert-flo/PJ-DOMINA-rf-shared_dir' "$PACKAGE_DIR/PKGBUILD" || die 'PKGBUILD url is not shared_dir upstream'
+  grep -Fq 'robert-flo/pj-domina-rf-shared_dir' "$PACKAGE_DIR/PKGBUILD" || die 'PKGBUILD url is not shared_dir upstream'
   grep -Eq '^pkgname = shared_dir$' "$PACKAGE_DIR/.SRCINFO" || die '.SRCINFO pkgname is not shared_dir'
   grep -Fq "depends=('acl' 'inotify-tools' 'sudo')" "$PACKAGE_DIR/PKGBUILD" || die 'PKGBUILD is missing the sudo runtime dependency'
   grep -Fxq $'\tdepends = sudo' "$PACKAGE_DIR/.SRCINFO" || die '.SRCINFO is missing the sudo runtime dependency'
