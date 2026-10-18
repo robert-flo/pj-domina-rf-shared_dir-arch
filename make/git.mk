@@ -427,7 +427,7 @@ git-clone-worktrees: ## Clone a repo as bare + create all worktrees with upstrea
 	@printf "$(CYAN)────────────────────────────────────────────────────────────────────────────────$(NC)\n"
 	@if [ -z "$(REPO)" ]; then \
 		printf "$(RED)  ✗ missing or invalid required argument$(NC)\n\n"; \
-		printf "  usage:  $(BLUE)make git-clone-worktrees REPO=git@github.com:robert-flo/shared_dir.git$(NC)\n\n"; \
+		printf "  usage:  $(BLUE)make git-clone-worktrees REPO=git@github.com:robert-flo/pj-domina-rf-shared_dir.git$(NC)\n\n"; \
 		printf "  override locations:\n"; \
 		printf "    $(DIM)BARE_HOME$(NC)       bare objects dir   (default: $(DIM)~/.local/share/git-bare$(NC))\n"; \
 		printf "    $(DIM)WORKTREES_HOME$(NC)  worktrees base dir (default: $(DIM)~/Work$(NC))\n\n"; \

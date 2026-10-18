@@ -1,9 +1,9 @@
 pkgname=shared_dir
 pkgver=0.2.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Create a group-shared directory with ACL and systemd permission monitoring'
 arch=('any')
-url='https://github.com/robert-flo/shared_dir'
+url='https://github.com/robert-flo/pj-domina-rf-shared_dir'
 license=('MIT')
 options=('!debug')
 depends=('acl' 'inotify-tools' 'sudo')
@@ -12,12 +12,12 @@ source=(
   "${pkgname}"
 )
 sha256sums=(
-  '5b8c4133eef5c7df57e552a9fbb714ffe4f60880a1346f16f3ba6c4317f0e115'
+  '26647cc4a2363ff34a07b6b2d82f38c443e870ccaa794f464c1d7f292682a475'
   '2c949232dd9bf8a4a0b43e56af15039565d47f1a07184ad9d8b5896a24e4940d'
 )
 
 package() {
-  local source_dir="${srcdir}/${pkgname}-${pkgver}"
+  local source_dir="${srcdir}/pj-domina-rf-${pkgname}-${pkgver}"
   local payload_dir="${pkgdir}/opt/${pkgname}"
 
   install -d "${payload_dir}"
