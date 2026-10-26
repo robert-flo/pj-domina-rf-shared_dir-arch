@@ -1,4 +1,4 @@
-# pj-domina-rf-shared_dir-aur
+# pj-domina-rf-shared_dir-arch
 
 Arch packaging repository for
 [`shared_dir`](https://github.com/robert-flo/pj-domina-rf-shared_dir).
