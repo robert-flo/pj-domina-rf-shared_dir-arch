@@ -29,8 +29,9 @@ jobs:
       - name: Validate packaging test
         run: |
           set -Eeuo pipefail
-          bash -n PKGBUILD tests/test-package-install.sh
-          shellcheck -S warning tests/test-package-install.sh
+          bash -n PKGBUILD shared_dir tests/*.sh tests/lib/*.sh
+          shellcheck -S warning shared_dir tests/*.sh tests/lib/*.sh
+          tests/test-vendored-contract.sh
           if [[ -d upstream ]]; then
             SHARED_DIR_SRC="$GITHUB_WORKSPACE/upstream" tests/test-package-install.sh
           else
